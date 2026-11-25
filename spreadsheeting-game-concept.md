@@ -28,3 +28,36 @@
 
 * **Frontend:** React TS + Tailwind CSS (ideal for rendering crisp data grids and synchronized cell state without heavy game engine overhead).
 * **Persistence:** Browser `localStorage` to auto-save runs after every turn so players never lose progress if they quickly close or switch tabs.
+
+---
+
+## 4. Development Roadmap
+
+| Step | Label | Scope | Depends On |
+| ------ | ------- | ------- | ------------ |
+| **DEV-01** | `SETUP` — Project Scaffolding | Initialize React TS + Tailwind CSS project, linting, folder structure, base types (Player, Item, Mob, Floor). | — |
+| **DEV-02** | `UI-GRID` — Spreadsheet Grid Shell | Numbered rows, lettered columns, cell selection, Excel/Google Sheets styling. | DEV-01 |
+| **DEV-03** | `UI-FXBAR` — Formula Bar | Top `fx` bar showing selected cell contents, item descriptions, and combat log lines. | DEV-02 |
+| **DEV-04** | `UI-TABS` — Worksheet Tab Navigation | Bottom tabs: `Sheet1: Discovery_Phase`, `Sheet2: Inventory_Audit`, `Sheet3: Vendor_Pricing`. | DEV-02 |
+| **DEV-05** | `STATE` — Game State Management | Central store for player HP, current floor, run bag ("Storage Rows"), stash, currency; turn-based state updates. | DEV-01 |
+| **DEV-06** | `GEN-DUNGEON` — Procedural Floor Generation | Seeded generator for dungeon floors rendered as grid cells (rooms, mobs, loot, exits). | DEV-02, DEV-05 |
+| **DEV-07** | `COMBAT` — Text-Driven Combat | Turn-based fights against mobs, damage/HP rules, combat output to the formula bar. | DEV-03, DEV-06 |
+| **DEV-08** | `LOOT` — Loot & Rarity System | Item tables, rarity tiers, depth-based rarity multipliers, drops from mobs/cells. | DEV-06 |
+| **DEV-09** | `BAG` — Storage Rows (Bag Capacity) | Limited run inventory, pickup/drop rules, capacity pressure. | DEV-05, DEV-08 |
+| **DEV-10** | `PROGRESSION` — Floor Descent | Descend to deeper floors, scaling mob difficulty and loot value (risk vs. reward). | DEV-06, DEV-07, DEV-08 |
+| **DEV-11** | `EXTRACT` — Export / Extract & Death Wipe | **Export** moves bag items to permanent stash; 0 HP wipes unextracted loot. | DEV-09, DEV-10 |
+| **DEV-12** | `STASH` — Inventory_Audit Sheet | Stash view, extracted loot listing, equipment equip/unequip management. | DEV-04, DEV-11 |
+| **DEV-13** | `SHOP` — Vendor_Pricing Sheet | Buy/sell upgrades, gear, and consumables using stash currency. | DEV-04, DEV-12 |
+| **DEV-14** | `STEALTH-TERMS` — Corporate Camouflage | Terminology map translating RPG terms to office jargon (e.g., Extract → *Export*) applied across UI text. | DEV-03, DEV-04 |
+| **DEV-15** | `PANIC` — Panic Button (`Esc`) | Instant switch to a static fake financial sheet/budget chart + neutral tab title (e.g., `"Q4 Budget Projections - Google Sheets"`); toggle back. | DEV-02 |
+| **DEV-16** | `PERSIST` — localStorage Auto-Save | Save run + stash after every turn; restore on reload/tab return. | DEV-05, DEV-11 |
+| **DEV-17** | `BALANCE` — Tuning & Playtesting | Balance HP, bag size, rarity multipliers, shop prices, floor difficulty curve. | DEV-10 – DEV-13 |
+| **DEV-18** | `POLISH` — QA & Release | Cross-browser testing, accessibility/keyboard shortcuts, performance, deployment. | All |
+
+### Milestones
+
+* **M1 — Spreadsheet Shell:** DEV-01 → DEV-05
+* **M2 — Playable Dungeon Run:** DEV-06 → DEV-11
+* **M3 — Meta Loop (Stash & Shop):** DEV-12 → DEV-13
+* **M4 — Office Stealth:** DEV-14 → DEV-15
+* **M5 — Persistence & Launch:** DEV-16 → DEV-18

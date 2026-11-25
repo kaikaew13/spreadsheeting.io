@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sheet: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  --color-sheet-grid: #e2e3e3;
+  --color-sheet-header: #f8f9fa;
+  --color-sheet-select: #1a73e8;
+  --color-sheet-accent: #188038;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sheet);
+}
